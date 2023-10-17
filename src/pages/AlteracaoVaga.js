@@ -20,7 +20,7 @@ function AlteracaoVaga() {
 
     useEffect(() => {
         //Recupera o vaga pelo ID a partir do LocalStorage
-        const vagasCadastradas = JSON.parse(localStorage.getItem('vagas')) || [];
+        const vagasCadastradas = JSON.parse(localStorage.getItem('vagasOcupadas')) || [];
         const vagaEncontrada = vagasCadastradas.find((vaga, index) => index === Number(id));
         if (vagaEncontrada) {
             setVaga(vagaEncontrada);
@@ -49,7 +49,7 @@ function AlteracaoVaga() {
         }
 
         // Recupera os vagas já cadastrados no LocalStorage
-        const vagasCadastradas = JSON.parse(localStorage.getItem('vagas')) || [];
+        const vagasCadastradas = JSON.parse(localStorage.getItem('vagasOcupadas')) || [];
 
         // Encontra o índice do vaga no array
         const vagaIndex = vagasCadastradas.findIndex((vaga, index) => index === Number(id));

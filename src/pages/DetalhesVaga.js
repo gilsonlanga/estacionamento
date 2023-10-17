@@ -13,7 +13,7 @@ function DetalhesVaga() {
 
     useEffect(() => {
         // Recupera o vaga pelo ID a partir do LocalStorage
-        const vagasCadastradas = JSON.parse(localStorage.getItem('vagas')) || [];
+        const vagasCadastradas = JSON.parse(localStorage.getItem('vagasOcupadas')) || [];
         const vagaEncontrada = vagasCadastradas.find((vaga, index) => index === Number(id));
 
         if (vagaEncontrada) {

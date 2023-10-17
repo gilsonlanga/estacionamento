@@ -47,17 +47,32 @@ function ListaVagas() {
     let mostrarVagasOcupadas = new Array();
     let mostrarVagasLivres = new Array();
 
+    //mostrarVagasOcupadas = JSON.parse(localStorage.getItem('vagasOcupadas')) || [];
+    
+
     for (let i=0; i<vagas.length; i++) {
         if (vagas[i].vagaIndisponivel === true) {
             mostrarVagasOcupadas.push(vagas[i]);
+            
+            
         }
+
+        
     }
+
+    //alert(`Proprietário vaga ${mostrarVagasOcupadas[3].numeroVaga}: ${mostrarVagasOcupadas[3].proprietario}`);
+
+    
+
+    localStorage.setItem('vagasOcupadas', JSON.stringify(mostrarVagasOcupadas));
 
     for (let i=0; i<vagas.length; i++) {
         if (vagas[i].vagaIndisponivel === false) {
             mostrarVagasLivres.push(vagas[i]);
         }
     }
+
+    localStorage.setItem('vagasLivres', JSON.stringify(mostrarVagasLivres));
 
     const handleDetalhes = (id) => {
         navigate(`/detalhes/${id}`);
@@ -89,13 +104,18 @@ function ListaVagas() {
         // Filtra os vagas para excluir o vaga com o ID informado
         const vagasAtualizadas = vagas.filter((vaga, index) => index !== id);
 
-
+        
 
         //alert("Vagas desordenadas!");
         OrdenarVagas(vagasAtualizadas);
         //alert("Vagas Ordenadas");
 
-
+        /*
+        for (let i=0; i<vagasAtualizadas.length; i++) {
+            alert(`Vaga número: ${vagasAtualizadas[i].numeroVaga} - Proprietário: ${vagasAtualizadas[i].proprietario}`)
+        }
+        */
+       
 
         // Atualiza o LocalStorage com a lista de vagas atualizada
         localStorage.setItem('vagas', JSON.stringify(vagasAtualizadas));
@@ -117,12 +137,12 @@ function ListaVagas() {
             <h1>Listagem de Vagas Ocupadas</h1>
             <ul>
                 {
-                    mostrarVagasOcupadas.map((mostrarVagasOcupadas) => (
-                        <li>
+                    mostrarVagasOcupadas.map((mostrarVagasOcupadas, index) => (
+                        <li key={index}>
                             <strong>Vaga #: {mostrarVagasOcupadas.numeroVaga} </strong>
-                            <button onClick={() => handleDetalhes((mostrarVagasOcupadas.numeroVaga-1))}>Detalhes</button>
-                            <button onClick={() => handleAlteracao((mostrarVagasOcupadas.numeroVaga-1))}>Alterar</button>
-                            <button onClick={() => handleExclusao((mostrarVagasOcupadas.numeroVaga-1))}>Excluir</button>
+                            <button onClick={() => handleDetalhes((index))}>Detalhes</button>
+                            <button onClick={() => handleAlteracao((index))}>Alterar</button>
+                            <button onClick={() => handleExclusao((index))}>Excluir</button>
                         </li>
                     ))}
             </ul>

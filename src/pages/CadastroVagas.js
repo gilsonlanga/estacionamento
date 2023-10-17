@@ -5,6 +5,7 @@ import totalVagas from '../components/TotalVagas';
 const maximoVagas = totalVagas();
 
 let vagasIndisponiveis = new Array(maximoVagas);
+let vagasDisponiveis = new Array(maximoVagas);
 let inicializar = true;
 
 //alert("Inicializando...");
@@ -16,6 +17,7 @@ function CadastroVagas() {
         for (let i=0; i<maximoVagas; i++) {
             vagasIndisponiveis[i] = {vagaIndisponivel: false, numeroVaga: (i+1)};
         }
+        vagasDisponiveis =
         inicializar = false;
     }
 
